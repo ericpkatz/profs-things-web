@@ -32,6 +32,12 @@ function App() {
     navigate('/');
   };
 
+  const updateThing = async(thing)=> {
+    const response = await axios.put(`https://profs-things-api.onrender.com/api/things/${thing.id}`, thing);
+    const updatedThing = response.data;
+    setThings(things.map(thing => thing.id !== updatedThing.id ? thing : updatedThing));
+  };
+
   return (
     <>
       <h1><Link to='/'>Profs Things Web </Link>({ things.length })</h1>
@@ -52,7 +58,7 @@ function App() {
         }
       </ul>
       <Routes>
-        <Route path='/things/:id' element={ <Thing destroyThing={ destroyThing } things={ things } />} />
+        <Route path='/things/:id' element={ <Thing updateThing={ updateThing } destroyThing={ destroyThing } things={ things } />} />
       </Routes>
     </>
   )

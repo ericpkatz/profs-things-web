@@ -1,0 +1,9 @@
+form {
+  display: flex;
+  flex-direction: column;
+  border: solid 1px dodgerBlue;
+}
+
+form > * {
+  margin: 0.5rem;
+}
