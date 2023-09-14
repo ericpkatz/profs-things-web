@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import axios from 'axios';
 import { Link, Routes, Route, useParams, useNavigate } from 'react-router-dom';
 import Thing from './Thing';
+import ThingsByLetter from './ThingsByLetter';
+
 
 
 function App() {
@@ -41,6 +43,8 @@ function App() {
   return (
     <>
       <h1><Link to='/'>Profs Things Web </Link>({ things.length })</h1>
+      <Link to='/things/startingWith/b'>Things Starting With B</Link>
+      <Link to='/things/startingWith/g'>Things Starting With G</Link>
       <button onClick={ create }>Create Random Thing</button>
       <ul>
         {
@@ -59,6 +63,7 @@ function App() {
       </ul>
       <Routes>
         <Route path='/things/:id' element={ <Thing updateThing={ updateThing } destroyThing={ destroyThing } things={ things } />} />
+        <Route path='/things/startingWith/:alpha' element={ <ThingsByLetter things={ things }/> } />
       </Routes>
     </>
   )
